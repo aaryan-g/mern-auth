@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
+import "../assets/header.css";
+
 function Header() {
   const { currentUser } = useSelector((state) => state.user);
   return (

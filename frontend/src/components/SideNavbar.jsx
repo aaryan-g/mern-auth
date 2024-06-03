@@ -38,21 +38,21 @@ import {
   Bars3Icon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
- 
+
 export function SidebarWithBurgerMenu() {
   const dispatch = useDispatch();
   const [open, setOpen] = React.useState(0);
   const [openAlert, setOpenAlert] = React.useState(true);
   const [isDrawerOpen, setIsDrawerOpen] = React.useState(true);
- 
+
   const handleOpen = (value) => {
     setOpen(open === value ? 0 : value);
   };
- 
+
   const openDrawer = () => {
-    setIsDrawerOpen(prevState => !prevState);
-  }
-    
+    setIsDrawerOpen((prevState) => !prevState);
+  };
+
   //   setIsDrawerOpen(true);
   // const closeDrawer = () => setIsDrawerOpen(false);
 
@@ -66,7 +66,7 @@ export function SidebarWithBurgerMenu() {
       console.log(error);
     }
   };
- 
+
   return (
     <>
       {currentUser ? (
@@ -84,7 +84,7 @@ export function SidebarWithBurgerMenu() {
               open={isDrawerOpen}
               color="transparent"
               shadow={false}
-              className="side-nav-card h-[calc(100vh-2rem)]  p-4 "
+              className="side-nav-card p-4 "
             >
               {/* <IconButton variant="text" size="lg" onClick={closeDrawer}>
                     {isDrawerOpen ? (
@@ -103,12 +103,6 @@ export function SidebarWithBurgerMenu() {
                     Sidebar
                   </Typography>
                 </div> */}
-              <div className="p-2">
-                <Input
-                  icon={<MagnifyingGlassIcon className="h-5 w-5" />}
-                  label="Search"
-                />
-              </div>
               <List>
                 <Accordion
                   open={open === 1}
@@ -121,7 +115,7 @@ export function SidebarWithBurgerMenu() {
                     />
                   }
                 >
-                  <Link to="/home" >
+                  <Link to="/home">
                     <ListItem className="p-0" selected={open === 1}>
                       <AccordionHeader
                         onClick={() => handleOpen(1)}
@@ -198,7 +192,7 @@ export function SidebarWithBurgerMenu() {
                         color="blue-gray"
                         className="mr-auto font-normal"
                       >
-                        Manage Members
+                        Members
                       </Typography>
                     </AccordionHeader>
                   </ListItem>
@@ -231,46 +225,23 @@ export function SidebarWithBurgerMenu() {
                   </AccordionBody>
                 </Accordion>
                 <hr className="my-2 border-blue-gray-50" />
-                </List>
-                
-                <List className="absolute bottom-4  ">
-                  <ListItem>
-                    <ListItemPrefix>
-                      <InboxIcon className="h-5 w-5" />
-                    </ListItemPrefix>
-                    Inbox
-                    <ListItemSuffix>
-                      <Chip
-                        value="14"
-                        size="sm"
-                        variant="ghost"
-                        color="blue-gray"
-                        className="rounded-full"
-                      />
-                    </ListItemSuffix>
-                  </ListItem>
-                  <Link to='/profile'>
+              </List>
 
-                    <ListItem>
-                      <ListItemPrefix>
-                        <UserCircleIcon className="h-5 w-5" />
-                      </ListItemPrefix>
-                      Profile
-                    </ListItem>
-                  </Link>
+              <List className="absolute bottom-3  ">
+                <Link to="/profile">
                   <ListItem>
                     <ListItemPrefix>
-                      <Cog6ToothIcon className="h-5 w-5" />
+                      <UserCircleIcon className="h-5 w-5" />
                     </ListItemPrefix>
-                    Settings
+                    Profile
                   </ListItem>
-                  <ListItem onClick={handleSignOut}>
-                    <ListItemPrefix>
-                      <PowerIcon className="h-5 w-5" />
-                    </ListItemPrefix>
-                    Log Out
-                  </ListItem>
-               
+                </Link>
+                <ListItem onClick={handleSignOut}>
+                  <ListItemPrefix>
+                    <PowerIcon className="h-5 w-5" />
+                  </ListItemPrefix>
+                  Log Out
+                </ListItem>
               </List>
             </Card>
           )}

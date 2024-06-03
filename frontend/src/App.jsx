@@ -14,7 +14,7 @@ import ShowMember from "./pages/ShowMember";
 import AddMember from "./pages/AddMember";
 import { SidebarWithBurgerMenu } from "./components/SideNavbar";
 
-import './assets/homePageStyle.css'
+import "./assets/homePageStyle.css";
 import ShowProject from "./pages/ShowProject";
 import CreateProject from "./pages/CreateProject";
 import ProjectDetails from "./pages/ProjectDetails";
@@ -24,38 +24,41 @@ export default function App() {
   useEffect(() => {
     dispatch(cleanProjectsArray());
   }, [dispatch]);
-  return ( 
+  return (
     <BrowserRouter>
-      
       <Header />
       <div className="universal-main-container flex flex-row  ">
-          <div className="left-sidebar">
+        <div className="left-sidebar">
+          <SidebarWithBurgerMenu />
+        </div>
+        <div className="universal-right-container w-full ">
+          <Routes>
+            <Route path="/sign-in" element={<LoginPage></LoginPage>}></Route>
+            <Route path="/sign-up" element={<LoginPage></LoginPage>}></Route>
+            <Route path="/about" element={<About></About>}></Route>
 
-            <SidebarWithBurgerMenu />
-          </div>
-          <div className="universal-right-container w-full ">
+            <Route element={<PrivateRoute />}>
+              <Route path="/" element={<Home></Home>}></Route>
+              <Route path="/home" element={<Home></Home>}></Route>
+              <Route path="/create-project" element={<CreateProject />} />
+              <Route path="/show-project" element={<ShowProject />} />
+              <Route
+                path="/project-details/:projectId"
+                element={<ProjectDetails />}
+              />
 
-              <Routes>
-                <Route path="/sign-in" element={<LoginPage></LoginPage>}></Route>
-                <Route path="/sign-up" element={<LoginPage></LoginPage>}></Route> 
-                <Route path="/about" element={<About></About>}></Route>
-                
-              <Route element={<PrivateRoute />}>
-                  <Route path="/" element={<Home></Home>}></Route>
-                  <Route path="/home" element={<Home></Home>}></Route>
-                  <Route path="/create-project" element={<CreateProject />}/>
-                  <Route path="/show-project" element={<ShowProject />}/>
-                  <Route path="/project-details/:projectId" element={<ProjectDetails />}/>
-
-                  <Route path="/show-member" element={<ShowMember />}/>
-                  <Route path="/add-member" element={<AddMember />}/>
-                {/* <Route path="/members" element={<Members></Members>}> */}
-                {/* </Route>  */}
-                  <Route path="/profile" element={<Profile></Profile>}></Route>
-              </Route>
-              <Route path="/new-project" element={<NewProject></NewProject>}></Route>
-            </Routes>
-          </div>
+              <Route path="/show-member" element={<ShowMember />} />
+              <Route path="/add-member" element={<AddMember />} />
+              {/* <Route path="/members" element={<Members></Members>}> */}
+              {/* </Route>  */}
+              <Route path="/profile" element={<Profile></Profile>}></Route>
+            </Route>
+            <Route
+              path="/new-project"
+              element={<NewProject></NewProject>}
+            ></Route>
+          </Routes>
+        </div>
       </div>
     </BrowserRouter>
     // <LoginPage></LoginPage>
